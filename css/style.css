@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.app{
+    background: linear-gradient(#00A3FF, #FFF);
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    padding: 13px;
+
+}
+
+.containerBusca{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 55%;
+    height: 40px;
+    padding: 3px 20px;
+    background-color: black;
+    border-radius: 100px;
+    background: rgba(0, 0, 0, 0.35)
+}
+
+.containerBusca input{
+    background-color: transparent;
+    border: none;
+    outline: 0;
+    width: 90%;
+    height: 32px;
+    color: white;
+    font-size: 18px;
+}
+
+.icon{
+    width: 18px;
+    cursor: pointer;
+}
+
+.informacoes{
+    display: flex;
+    font-size: 75px;    
+    font-weight: 100;
+}
+
+.containerInformacoes{
+    display: flex;
+    color: white;
+}
