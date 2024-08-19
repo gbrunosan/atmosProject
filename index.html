@@ -16,9 +16,24 @@
             <input autocomplete="off" id="buscaCidade" type="text">
             <img class="icon" src="assets/busca.png" onclick="buscarCidade()">
         </form>
-        <div id="informacoes" class="containerInformacoes">
-
+        <div class="containerInfo">
+            <div class=temperaturaGrafico>
+                <div id="temperaturacidade">
+                    <div class="item"><h1 id="numeroTemp">15</h1><p id="celsius">°C</p></div>
+                    <div class="item"><span>Três Lagoas</span><img src="/assets/location.svg" id="locationIcon" alt=""></div>
+                    <div class="item"><span>Max 36°C - Mín 31°</span><span>Sensação Térmica 32°</span></div>
+                </div>
+                <div>
+                    <div id="divIconClima"><img src="assets/weather.svg" id="iconClima" alt=""></div>
+                </div>
+            </div>
+            <div class="climaStatus">
+                <div class="climaStatusItems"><img id="statusIcons" src="/assets/chuva.svg" alt=""><span>Chuva</span>  <span>66%</span></div>
+                <div class="climaStatusItems"><img id="statusIcons" src="/assets/umidade.svg" alt=""><span>Umidade</span>  <span>72%</span></div>
+                <div class="climaStatusItems"><img id="statusIcons" src="assets/vento.svg" alt=""><span>Vento</span>   <span>15km</span></div>
+            </div>
         </div>
+            <!-- Chuva umidade vento -->    
     </div>
 </body>
 </html>

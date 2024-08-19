@@ -47,7 +47,90 @@
     font-weight: 100;
 }
 
-.containerInformacoes{
+body{
+    
+}
+
+.containerInfo{
+    display: flex;
+    flex-direction:row ;
+    margin-top: 70px;
+}
+
+.temperaturaGrafico{
+    display: flex;
+    flex-direction: row;
+}
+
+#temperaturacidade{
     display: flex;
     color: white;
+    /* background-color:rgb(13, 21, 21); */
+    gap: 10px;
+    flex-direction: column ;   
+}
+
+#locationIcon {
+    padding-left: 10px;
+    max-width: 30px;
+    padding-botto;
+}
+
+#iconClima{
+    
+
+}
+.item {
+    /* background-color: #09141a; */
+    flex-direction: row;
+    display: flex;
+    gap: 5px    ;
+}
+
+#chuva {
+    height: 30px;
+    max-width: 30px;
+}
+
+#celsius{
+    font-size: 30px;
+    padding-left: 30px;
+    padding-top: 30px;
+
+}
+
+#numeroTemp{
+    font-size: 100px;   
+}
+h1{
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+#divIconClima{
+     margin-left: 300px;
+}
+
+.climaStatus {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding-left: 40px;
+}
+#statusIcons{
+    padding-right: 30px;
+
+}
+
+.climaStatusItems{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2a90d1;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: white; 
+    margin-bottom: 10px; 
+    width:500px;
 }

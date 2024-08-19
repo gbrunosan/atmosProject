@@ -4,6 +4,7 @@ let longitude
 let key = '1a97894415e52f2105e5967b788f266b';
 let units = 'metric'
 let app = document.querySelector('.app')
+let temperatura
 
 async function buscarCidade() {
     const apiKey = 'a286db27e3ec459ca4501730243107';
@@ -16,7 +17,6 @@ async function buscarCidade() {
         previsao()
       } catch (error) {
         console.error('Error:', error);
-      
     }    
 }
 
@@ -27,10 +27,12 @@ async function previsao(){
         let response = await fetch(url);
         let data = await response.json();
         if(data){
-            let temperatura = Math.ceil(data.main.temp);
-            console.log(`a temperatura em ${pesquisa.value} é ${temperatura}`);
+              temperatura= Math.ceil(data.main.temp);
         }
     } catch (e) {
         console.error(e.message);
     }
+let responsetemp = document.getElementById('temperaturacidade')
+console.log(responsetemp);
+responsetemp.innerHTML = ``
 }
