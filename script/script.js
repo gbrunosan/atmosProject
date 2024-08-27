@@ -152,12 +152,12 @@ function atualizarCarrossel(forecastDays) {
 function moverCarrossel(direcao) {
     const carrossel = document.querySelector('.carrossel-itens');
     const itens = document.querySelectorAll('.carrossel-itens .item-clima');
-    const totalItens = itens.length;
+    const totalItens = itens.length - 1;
 
     indiceCarrossel += direcao;
 
     if (indiceCarrossel < 0) {
-        indiceCarrossel = totalItens - 1;
+        indiceCarrossel = totalItens;
     } else if (indiceCarrossel >= totalItens) {
         indiceCarrossel = 0;
     }
