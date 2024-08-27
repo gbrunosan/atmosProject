@@ -5,28 +5,27 @@
     font-family: "Poppins", sans-serif;
 }
 
-.app{
-    background: linear-gradient(#00A3FF, #FFF);
+.app {
+    background: linear-gradient(#00a2ffcc, #FFF);
     height: 100vh;
     width: 100%;
-    position: absolute;
-    padding: 13px;
-
+    padding: 15px 280px;
 }
 
-.containerBusca{
+.containerBusca {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 55%;
+    width: 100%;
+    max-width: 375px;
     height: 40px;
     padding: 3px 20px;
     background-color: black;
-    border-radius: 100px;
-    background: rgba(0, 0, 0, 0.35)
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.35);
 }
 
-.containerBusca input{
+.containerBusca input {
     background-color: transparent;
     border: none;
     outline: 0;
@@ -36,18 +35,227 @@
     font-size: 18px;
 }
 
-.icon{
-    width: 18px;
+.icon {
+    width: 65%;
+}
+
+.iconeBusca{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 }
 
-.informacoes{
+.informacoes {
     display: flex;
-    font-size: 75px;    
+    font-size: 28px;    
+    font-weight: 300;
+    color: white;
+    text-transform: capitalize;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.containerInfo {
+    display: flex;
+    margin-top: 70px;
+    justify-content: space-between;
+}
+
+.temperaturaGrafico {
+    padding: 0 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.nomeCidade{
+    font-size: 32px;
+}
+
+#temperaturacidade {
+    display: flex;
+    color: white;
+    /* background-color:rgb(13, 21, 21); */
+    gap: 10px;
+    flex-direction: column ;   
+    font-size: 24px;
+    font-weight: 250;
+}
+
+#locationIcon {
+    margin-left: 5px;
+    width: 20px;
+}
+
+.item {
+    /* background-color: #09141a; */
+    flex-direction: row;
+    display: flex;
+    gap: 15px;
+}
+
+#chuva {
+    height: 30px;
+    max-width: 30px;
+}
+
+#celsius {
+    font-size: 30px;
+    padding-left: 30px;
+    padding-top: 30px;
+}
+
+#numeroTemp {
+    font-size: 128px;   
     font-weight: 100;
 }
 
-.containerInformacoes{
+h1 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+#iconClima{
+    width: 180px;
+}
+
+.climaStatus {
     display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding-left: 40px;
+}
+
+#statusIcons {
+    padding-right: 30px;
+}
+
+.diaSemana {
+    font-size: 18px;
+    font-weight: 600; /* Semibold */
+}
+
+.itemInfo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+.itemInfo img{
+    width:60px;
+}
+
+.climaStatusItems {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2a90d1;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: white; 
+    margin-bottom: 10px; 
+    width: 500px;
+}
+
+.conteudo-e-carrossel {
+    display: flex;
+    align-items: end;
+    justify-content: space-between; 
+    height: 350px;
+    margin-top: 50px;
+}
+
+.carrossel{
+    overflow: hidden;
+    width: 88%;
+}
+
+.carrossel-todo {
+    flex: 0 0 75%; /* O carrossel ocupa 70% da largura do contêiner pai */
+    display: flex;
+    align-items: center;
+}
+
+.carrossel-itens {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 90%;
+    gap: 40px;
+}
+
+.item-clima {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    flex: 0 0 33.6%;
+    height: 310px;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #1313245b;
     color: white;
+    border-radius: 8px;
+}
+
+.item-clima img {
+    width: 110px;
+    margin-bottom: 10px;
+}
+
+.conteudo-adicional {
+    flex: 0.85;
+    height: 100%;
+}
+
+.conteudo-adicional .item-clima {
+    height: 100%;
+    gap:15px;
+}
+
+.item-clima .arrow{
+    width: 20px;
+}
+
+.porDoSol{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.prev, .next {
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 50px; /* Aumentando o tamanho da fonte */
+    font-weight: 700; /* Aumentando o peso da fonte */
+    border-radius: 15px; /* Adicionando uma leve borda arredondada para um visual melhor */
+}
+
+.prev {
+    margin-right: 20px;
+}
+
+.next{
+    margin-left: 10px;
+}
+
+.item-temperatura {
+    font-size: 28px;
+    color: white; /* Adicionando uma cor para o texto, pode ser ajustada conforme necessário */
+    text-align: center; /* Centralizando o texto, se necessário */
+}
+
+.item-sunset{
+    display: flex;
+    flex-direction: column;
 }

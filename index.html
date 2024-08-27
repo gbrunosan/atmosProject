@@ -7,17 +7,40 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <script src="script/script.js" defer></script>
 </head>
 <body>
     <div class="app">
-        <form class="containerBusca"> 
-            <input autocomplete="off" id="buscaCidade" type="text">
-            <img class="icon" src="assets/busca.png" onclick="buscarCidade()">
-        </form>
-        <div id="informacoes" class="containerInformacoes">
-
+        <div class="header">
+            <form class="containerBusca" onsubmit="return buscarCidade(event)"> 
+                <input autocomplete="off" id="buscaCidade" type="text">
+                <div onclick="buscarCidade()" class="iconeBusca">
+                    <img class="icon" src="assets/busca.png">
+                </div>
+            </form>
+            <div class="climaDesc">
+                <!-- descricões como "céu limpo" "céu nublado" à direita -->
+            </div>
+        </div>
+        <div class="containerInfo">
+                <!-- informaçoes gerais -->
+        </div>
+        <div class="conteudo-e-carrossel">
+            <div class="carrossel-todo">            
+                <button class="prev" onclick="moverCarrossel(-1)">&#10094;</button>
+                <div class="carrossel">
+                    <div class="carrossel-itens">
+                        <!-- Itens do carrosel -->
+                    </div>
+                </div>
+                <button class="next" onclick="moverCarrossel(1)">&#10095;</button>
+            </div>
+            <div class="conteudo-adicional">
+                <div id="sessao-por-do-sol" class="item-clima">
+                        <!-- informacoes de nascer e por do sol -->
+                </div>
+            </div>
         </div>
     </div>
 </body>
