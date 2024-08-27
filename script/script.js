@@ -6,7 +6,7 @@ let key = 'a286db27e3ec459ca4501730243107';
 let units = 'metric';
 let app = document.querySelector('.app');
 let temperatura, tempMin, tempMax, umidade, sensacao, vento, clima, nascerDoSol, porDoSol, chanceDeChuva;
-let indiceCarrossel = 0; // Inicializando o índice do carrossel
+let indiceCarrossel = 0;
 
 async function buscarCidade(event) {
     event.preventDefault();
@@ -43,6 +43,7 @@ async function previsao() {
             umidade = data.current.humidity;
             vento = Math.ceil(data.current.wind_kph);
             clima = data.current.condition.text;
+            if(clima == 'Sol') clima = 'Ensolarado'
             nascerDoSol = data.forecast.forecastday[0].astro.sunrise;
             porDoSol = data.forecast.forecastday[0].astro.sunset;
             chanceDeChuva = data.forecast.forecastday[0].day.daily_chance_of_rain;
@@ -55,14 +56,14 @@ async function previsao() {
 }
 
 function selecionarIconeClima() {
-    if (temperatura > 30) {
+    if (temperatura > 25 || clima == "Ensolarado") {
         return '/assets/sun.svg';
-    } else if (chanceDeChuva > 80) { // Alta chance de chuva
+    } else if (chanceDeChuva > 60) { // Alta chance de chuva
         if (chanceDeChuva > 90) { // Chuva muito alta
             return '/assets/thunder.svg';
         }
         return '/assets/rainy.svg';
-    } else if (temperatura >= 15 && temperatura <= 30) {
+    } else if ((temperatura >= 15 && temperatura <= 25) || clima == "Parcialmente Nublado") {
         return '/assets/cloudy.svg';
     } else if (temperatura >= 5 && temperatura < 15) {
         return '/assets/very_cloudy.svg';
@@ -97,11 +98,11 @@ function atualizarUI(forecastDays) {
                 <span>${chanceDeChuva}%</span>
             </div>
                <div class="climaStatusItems">
-                <di class="itemInfo"><img id="statusIcons" src="/assets/umidade.svg" alt=""><span>Umidade</span></di>
+                <div class="itemInfo"><img id="statusIcons" src="/assets/umidade.svg" alt=""><span>Umidade</span></div>
                  <span>${umidade}%</span>
             </div>
                <div class="climaStatusItems">
-                <di class="itemInfo"><img id="statusIcons" src="/assets/vento.svg" alt=""><span>Vento</span></di>
+                <div class="itemInfo"><img id="statusIcons" src="/assets/vento.svg" alt=""><span>Vento</span></div>
                 <span>${vento}km/h</span>
             </div>        
         </div>
