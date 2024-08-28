@@ -53,17 +53,21 @@ async function previsao() {
     } catch (error) {
         console.error('Error:', error);
     }
+    if(data == []){
+        alert('bur')
+    }
 }
 
 function selecionarIconeClima() {
-    if (temperatura > 25 || clima == "Ensolarado") {
-        return '/assets/sun.svg';
-    } else if (chanceDeChuva > 60) { // Alta chance de chuva
+    if (chanceDeChuva > 60) { // Alta chance de chuva
         if (chanceDeChuva > 90) { // Chuva muito alta
             return '/assets/thunder.svg';
         }
         return '/assets/rainy.svg';
-    } else if ((temperatura >= 15 && temperatura <= 25) || clima == "Parcialmente Nublado") {
+    } 
+    else if (temperatura > 25 || clima == "Ensolarado") {
+        return '/assets/sun.svg';
+    }else if ((temperatura >= 15 && temperatura <= 25) || clima == "Parcialmente Nublado") {
         return '/assets/cloudy.svg';
     } else if (temperatura >= 5 && temperatura < 15) {
         return '/assets/very_cloudy.svg';
@@ -84,17 +88,17 @@ function atualizarUI(forecastDays) {
     responsetemp.innerHTML = `
         <div class="temperaturaGrafico">
             <div id="temperaturacidade">
-                <div class="item"><h1 id="numeroTemp">${temperatura}</h1><p id="celsius" class="item-temperatura">°C</p></div>
-                <div class="item"><span class="nomeCidade">${nomeCidade}</span><img src="/assets/location.svg" id="locationIcon" alt=""></div>
-                <div class="item"><span>Max ${tempMax}°C - Mín ${tempMin}°C</span><span>Sensação Térmica ${sensacao}°C</span></div>
+                <div class="item"><h1 id="numeroTemp">${temperatura}</h1><p class="celsius">°C</p></div>
+                <div class="mainClima"><img src="${iconeClimaHoje}" alt=""></div>
             </div>
             <div>
-                <div id="divIconClima"><img src="${iconeClimaHoje}" id="iconClima" alt=""></div>
+                <div class="item"><span class="nomeCidade">${nomeCidade}</span><img src="/assets/location.svg" id="locationIcon" alt=""></div>
+                <div class="item"><span>Max ${tempMax}°C - Mín ${tempMin}°C</span><span>Sensação Térmica ${sensacao}°C</span></div>
             </div>
         </div>
         <div class="climaStatus">
             <div class="climaStatusItems">
-                <di class="itemInfo"><img id="statusIcons" src="/assets/chuva.svg" alt=""><span>Chuva</span></di>
+                <div class="itemInfo"><img id="statusIcons" src="/assets/chuva.svg" alt=""><span>Chuva</span></div>
                 <span>${chanceDeChuva}%</span>
             </div>
                <div class="climaStatusItems">
@@ -153,7 +157,7 @@ function atualizarCarrossel(forecastDays) {
 function moverCarrossel(direcao) {
     const carrossel = document.querySelector('.carrossel-itens');
     const itens = document.querySelectorAll('.carrossel-itens .item-clima');
-    const totalItens = itens.length - 1;
+    const totalItens = itens.length-1;
 
     indiceCarrossel += direcao;
 
@@ -163,7 +167,7 @@ function moverCarrossel(direcao) {
         indiceCarrossel = 0;
     }
 
-    const larguraItem = itens[0].clientWidth + 20;
+    const larguraItem = itens[0].clientWidth + 40;
     carrossel.style.transform = `translateX(${-indiceCarrossel * larguraItem}px)`;
 }
 
