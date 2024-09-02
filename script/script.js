@@ -73,8 +73,8 @@ function selecionarIconeClima() {
 }
 
 function atualizarUI(forecastDays) {
-    let responsetemp = document.querySelector('.containerInfo');
     let headerClima = document.querySelector('.climaDesc');
+    let responsetemp = document.querySelector('.containerInfo');
     let sessaoPorDoSol = document.querySelector('#sessao-por-do-sol');
 
     headerClima.innerHTML = `<p class="informacoes">${clima}</p>`;
@@ -84,12 +84,11 @@ function atualizarUI(forecastDays) {
     responsetemp.innerHTML = `
         <div class="temperaturaGrafico">
             <div id="temperaturacidade">
-                <div class="item"><h1 id="numeroTemp">${temperatura}</h1><p id="celsius" class="item-temperatura">°C</p></div>
+                <div class="tempEClima"><h1 id="numeroTemp">${temperatura}</h1><p id="celsius" class="item-temperatura">°C</p>
+                    <div id="divIconClima"><img src="${iconeClimaHoje}" id="iconClima" alt=""></div>
+                </div>
                 <div class="item"><span class="nomeCidade">${nomeCidade}</span><img src="/assets/location.svg" id="locationIcon" alt=""></div>
-                <div class="item"><span>Max ${tempMax}°C - Mín ${tempMin}°C</span><span>Sensação Térmica ${sensacao}°C</span></div>
-            </div>
-            <div>
-                <div id="divIconClima"><img src="${iconeClimaHoje}" id="iconClima" alt=""></div>
+                <div class="item"><span>Max ${tempMax}°C - Mín ${tempMin}°C</span><span>Sensação Térmica ${sensacao}°C</span></label>
             </div>
         </div>
         <div class="climaStatus">
@@ -139,7 +138,7 @@ function atualizarCarrossel(forecastDays) {
         const forecast = forecastDays[index];
 
         carrosselItens.innerHTML += `
-        <div class="item-clima">
+        <div class="item-clima carrosel">
             <p class="diaSemana">${diasDaSemana[diaDaSemanaIndex]}</p>
             <img src="${forecast.day.condition.icon}" alt="${forecast.day.condition.text}">
             <p class="item-temperatura">${Math.ceil(forecast.day.avgtemp_c)} °C</p>

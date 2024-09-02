@@ -9,14 +9,15 @@
     background: linear-gradient(#0077ffd8, #FFF);
     height: 100vh;
     width: 100%;
-    padding: 15px 280px;
+    padding: 15px 150px;
+    border: 30px solid blue;
 }
 
 .containerBusca {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: 50%;
     max-width: 375px;
     height: 40px;
     padding: 3px 20px;
@@ -64,16 +65,15 @@
 
 .containerInfo {
     display: flex;
-    margin-top: 70px;
-    justify-content: space-between;
+    margin-top: 40px;
 }
 
 .temperaturaGrafico {
-    padding: 0 30px;
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    
 }
 .nomeCidade{
     font-size: 32px;
@@ -87,6 +87,7 @@
     flex-direction: column ;   
     font-size: 24px;
     font-weight: 250;
+    justify-content: space-around;
 }
 
 #locationIcon {
@@ -94,11 +95,14 @@
     width: 20px;
 }
 
-.item {
+.tempEClima{
     /* background-color: #09141a; */
     flex-direction: row;
     display: flex;
     gap: 15px;
+}
+#divIconClima{
+    margin-left: auto;
 }
 
 #chuva {
@@ -157,12 +161,15 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #2a90d1;
+    background-color: #2990d1;
     padding: 10px 20px;
     border-radius: 20px;
     color: white; 
     margin-bottom: 10px; 
-    width: 500px;
+}
+.climaStatus{
+    padding: 0;
+    max-width: 100vw;
 }
 
 .conteudo-e-carrossel {
@@ -171,17 +178,21 @@ h1 {
     justify-content: space-between; 
     height: 350px;
     margin-top: 50px;
+    
+    
 }
 
 .carrossel{
     overflow: hidden;
     width: 88%;
+    
 }
 
 .carrossel-todo {
     flex: 0 0 75%; /* O carrossel ocupa 70% da largura do contêiner pai */
     display: flex;
     align-items: center;
+    
 }
 
 .carrossel-itens {
@@ -224,6 +235,7 @@ h1 {
     width: 20px;
 }
 
+    
 .porDoSol{
     display: flex;
     flex-direction: column;
@@ -259,3 +271,132 @@ h1 {
     display: flex;
     flex-direction: column;
 }
+
+@media (max-width:450px) {
+    .app{
+        border: 1px solid rgb(255, 8, 160);
+        height:100vh;
+        width:100vw;
+        padding: 10px;
+    }
+    .header{
+        display:flex
+    }
+    .climaDesc p{
+        font-size: 10px;
+    }
+    .containerInfo{
+        display: flex;
+        margin-top: 0px;
+    }
+    .conteudo-e-carrossel{
+        width: 100vw;
+        min-width: 10px;
+        display: flex;
+        margin-top: 0px;
+        max-height: 320px;
+    }
+    .carrossel-todo{
+        width: 100vw;
+        min-width: 10px;
+        display: flex;
+        margin-top: 0px;
+        max-height: 320px;
+    }
+    .conteudo-adicional{
+        width: 1px;
+        min-width: 10px;
+        display: flex;
+        margin-top: 0px;
+        max-height: 320px;
+    }
+    .climasDesc{
+        display: flex;
+    }
+    #iconClima{
+        width: 18vh;
+    }
+    .temperaturaGrafico{
+        width: 100vh;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction:column;
+    }
+    .containerInfo{
+        display: flex;
+    }
+    .climaStatus{
+        gap: 0;
+    }
+    .climaStatusItems {
+        background-color: hsl(203, 67%, 49%, 0.223);
+        width: 95vw;
+    }
+
+    #divIconClima{
+        display: flex;
+    }
+}
+
+@media (min-width:451px) and (max-width:1025px) {
+    .app{
+        border: 2px solid rgb(255, 0, 0);
+        height:100vh auto;
+        width:100vw;
+        padding: 10px;
+        margin: 0;
+    }
+    .header{
+        display:flex
+    }
+    .climaDesc p{
+        font-size: 38px;
+    }
+    .containerInfo{
+        display: flex;
+    }
+    .climasDesc{
+        display: flex;
+    }
+    #iconClima{
+        width: 22vh;
+    }
+    .temperaturaGrafico{
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction:column;
+    }
+    .containerInfo{
+        display: flex;
+    }
+    .climaStatus{
+        gap: 0;
+        align-items: center;
+        width: 100vw;
+        
+    }
+    .climaStatusItems {
+        background-color: hsl(203, 67%, 49%, 0.223);
+        width: 80vw;
+    }
+    #divIconClima{
+        display: flex;
+        justify-content: center;
+        margin-left: 0;
+    }
+    #temperaturacidade{
+        align-items: center;
+    }
+    .tempEClima{
+        justify-content: space-between;
+        max-width:100vw;
+        gap:0;
+    }
+    #divIconClima{
+        margin-left: 300px;
+    }
+}
+
