@@ -10,7 +10,7 @@
     height: 100vh;
     width: 100%;
     padding: 15px 150px;
-    border: 30px solid blue;
+    /* border: 30px solid blue; */
 }
 
 .containerBusca {
@@ -274,7 +274,7 @@ h1 {
 
 @media (max-width:450px) {
     .app{
-        border: 1px solid rgb(255, 8, 160);
+        /* border: 1px solid rgb(255, 8, 160); */
         height:100vh;
         width:100vw;
         padding: 10px;
@@ -341,7 +341,7 @@ h1 {
 
 @media (min-width:451px) and (max-width:1025px) {
     .app{
-        border: 2px solid rgb(255, 0, 0);
+        /* border: 2px solid rgb(255, 0, 0); */
         height:100vh auto;
         width:100vw;
         padding: 10px;
@@ -396,7 +396,7 @@ h1 {
         gap:0;
     }
     #divIconClima{
-        margin-left: 300px;
+        margin-left:;
     }
 }
 
