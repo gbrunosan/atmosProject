@@ -7,6 +7,8 @@ let units = 'metric';
 let app = document.querySelector('.app');
 let temperatura, tempMin, tempMax, umidade, sensacao, vento, clima, nascerDoSol, porDoSol, chanceDeChuva;
 let indiceCarrossel = 0;
+const agora = new Date();
+const horas = agora.getHours();
 
 async function buscarCidade(event) {
     event.preventDefault();
@@ -14,6 +16,10 @@ async function buscarCidade(event) {
     try {
         const response = await fetch(url);
         const data = await response.json();
+        if (data.length === 0) {
+            alert('Nenhuma cidade encontrada')
+            return
+        }
         latitude = data[0].lat;
         longitude = data[0].lon;
         nomeCidade = data[0].name;
@@ -21,13 +27,6 @@ async function buscarCidade(event) {
     } catch (error) {
         console.error('Error:', error);
     }
-}
-
-function formatarHorario(timestamp) {
-    const date = new Date(timestamp * 1000);
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    return `${hours}:${minutes}`;
 }
 
 async function previsao() {
@@ -43,9 +42,10 @@ async function previsao() {
             umidade = data.current.humidity;
             vento = Math.ceil(data.current.wind_kph);
             clima = data.current.condition.text;
-            if(clima == 'Sol') clima = 'Ensolarado'
-            nascerDoSol = data.forecast.forecastday[0].astro.sunrise;
-            porDoSol = data.forecast.forecastday[0].astro.sunset;
+            if (clima == 'Sol') clima = 'Ensolarado';
+            
+            nascerDoSol = formatarHorario(data.forecast.forecastday[0].astro.sunrise);
+            porDoSol = formatarHorario(data.forecast.forecastday[0].astro.sunset);
             chanceDeChuva = data.forecast.forecastday[0].day.daily_chance_of_rain;
 
             atualizarUI(data.forecast.forecastday);
@@ -55,18 +55,48 @@ async function previsao() {
     }
 }
 
+
+function atualizarClasseApp() {
+    if (horas >= 5 && horas < 18) {
+        app.classList.add('appDia');
+        app.classList.remove('appNoite');
+    } else {
+        app.classList.add('appNoite');
+        app.classList.remove('appDia');
+    }
+}
+
+function formatarHorario(horario) {
+    const [time, modifier] = horario.split(' ');
+    let [hours, minutes] = time.split(':');
+
+    if (modifier === 'PM' && hours !== '12') {
+        hours = parseInt(hours, 10) + 12;
+    }
+
+    if (modifier === 'AM' && hours === '12') {
+        hours = '00';
+    }
+
+    return `${hours}:${minutes}`;
+}
+
 function selecionarIconeClima() {
     if (temperatura > 25 || clima == "Ensolarado") {
-        return '/assets/sun.svg';
-    } else if (chanceDeChuva > 60) { // Alta chance de chuva
-        if (chanceDeChuva > 90) { // Chuva muito alta
+        if(horas >= 5 && horas < 18) return '/assets/sun.svg';
+        else return '/assets/moon.svg'
+    }
+    else if (chanceDeChuva > 60) {
+        if (chanceDeChuva > 90) {
             return '/assets/thunder.svg';
         }
         return '/assets/rainy.svg';
-    } else if ((temperatura >= 15 && temperatura <= 25) || clima == "Parcialmente Nublado") {
-        return '/assets/cloudy.svg';
-    } else if (temperatura >= 5 && temperatura < 15) {
-        return '/assets/very_cloudy.svg';
+    } else if (clima == "Neblina") {
+        return '/assets/very_cloudy.svg'
+    }
+    else if ((temperatura >= 15 && temperatura <= 25) || clima == "Parcialmente Nublado") {
+        if(horas >= 5 && horas < 18) return '/assets/cloudy.svg';
+        else return '/assets/cloudyNight.svg'
     } else {
         return '/assets/snowy.svg';
     }
@@ -84,16 +114,22 @@ function atualizarUI(forecastDays) {
     responsetemp.innerHTML = `
         <div class="temperaturaGrafico">
             <div id="temperaturacidade">
-                <div class="tempEClima"><h1 id="numeroTemp">${temperatura}</h1><p id="celsius" class="item-temperatura">°C</p>
+                <div class="tempEClima">
+                    <div class="celsiusSpace">
+                        <h1 id="numeroTemp">${temperatura}</h1><p id="celsius">°C</p>
+                    </div>
                     <div id="divIconClima"><img src="${iconeClimaHoje}" id="iconClima" alt=""></div>
                 </div>
-                <div class="item"><span class="nomeCidade">${nomeCidade}</span><img src="/assets/location.svg" id="locationIcon" alt=""></div>
-                <div class="item"><span>Max ${tempMax}°C - Mín ${tempMin}°C</span><span>Sensação Térmica ${sensacao}°C</span></label>
+                <div><span class="nomeCidade">${nomeCidade}</span><img src="/assets/location.svg" id="locationIcon" alt=""></div>
+                <div class="minmax">
+                    <span>Max ${tempMax}° - Mín ${tempMin}°</span>
+                    <span>Sensação Térmica ${sensacao}°</span>
+                </div>
             </div>
         </div>
         <div class="climaStatus">
             <div class="climaStatusItems">
-                <di class="itemInfo"><img id="statusIcons" src="/assets/chuva.svg" alt=""><span>Chuva</span></di>
+                <div class="itemInfo"><img id="statusIcons" src="/assets/chuva.svg" alt=""><span>Chuva</span></div>
                 <span>${chanceDeChuva}%</span>
             </div>
                <div class="climaStatusItems">
@@ -109,12 +145,12 @@ function atualizarUI(forecastDays) {
 
     sessaoPorDoSol.innerHTML = `
         <div class="porDoSol">
-            <img src="assets/yellow_sunset.svg" alt="Nascer do Sol">
+            <img class="nascer" src="assets/yellow_sunset.png" alt="Nascer do Sol">
             <img class="arrow" src="assets/arrow1.png" alt="Nascer do Sol">
             <p class="item-temperatura">${nascerDoSol}</p>
         </div>
         <div class="porDoSol">
-            <img src="assets/orange_sunset.svg" alt="Pôr do Sol">
+            <img class="nascer" src="assets/orange_sunset.png" alt="Pôr do Sol">
             <img class="arrow" src="assets/arrow2.png" alt="Pôr do Sol">
             <p class="item-temperatura">${porDoSol}</p>
         </div>
@@ -132,7 +168,6 @@ function atualizarCarrossel(forecastDays) {
     const hoje = new Date().getDay();
     let index = 0;
 
-    // Iniciar o carrossel com o dia de hoje
     for (let i = 0; i < diasDaSemana.length; i++) {
         const diaDaSemanaIndex = (hoje + i) % diasDaSemana.length;
         const forecast = forecastDays[index];
@@ -152,7 +187,7 @@ function atualizarCarrossel(forecastDays) {
 function moverCarrossel(direcao) {
     const carrossel = document.querySelector('.carrossel-itens');
     const itens = document.querySelectorAll('.carrossel-itens .item-clima');
-    const totalItens = itens.length - 1;
+    const totalItens = itens.length-1;
 
     indiceCarrossel += direcao;
 
@@ -162,12 +197,13 @@ function moverCarrossel(direcao) {
         indiceCarrossel = 0;
     }
 
-    const larguraItem = itens[0].clientWidth + 20;
+    const larguraItem = itens[0].clientWidth + 15;
     carrossel.style.transform = `translateX(${-indiceCarrossel * larguraItem}px)`;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     previsao();
+    atualizarClasseApp();
 
     document.querySelector('.btn-esquerda').addEventListener('click', () => moverCarrossel(-1));
     document.querySelector('.btn-direita').addEventListener('click', () => moverCarrossel(1));
