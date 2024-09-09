@@ -19,6 +19,11 @@
     min-height: 100vh;
 }
 
+.minmax{
+    display: flex;
+    gap: 25px;
+}
+
 .containerBusca {
     display: flex;
     align-items: center;
