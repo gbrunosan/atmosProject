@@ -82,11 +82,7 @@ function formatarHorario(horario) {
 }
 
 function selecionarIconeClima() {
-    if (temperatura > 25 || clima == "Ensolarado") {
-        if(horas >= 5 && horas < 18) return '/assets/sun.svg';
-        else return '/assets/moon.svg'
-    }
-    else if (chanceDeChuva > 60) {
+    if (chanceDeChuva > 60) {
         if (chanceDeChuva > 90) {
             return '/assets/thunder.svg';
         }
@@ -94,12 +90,16 @@ function selecionarIconeClima() {
     } else if (clima == "Neblina") {
         return '/assets/very_cloudy.svg'
     }
-    else if ((temperatura >= 15 && temperatura <= 25) || clima == "Parcialmente Nublado") {
+    
+    else if (((temperatura >= 15 && temperatura <= 25) && clima !== "Céu limpo") || clima == "Parcialmente nublado") {
         if(horas >= 5 && horas < 18) return '/assets/cloudy.svg';
         else return '/assets/cloudyNight.svg'
-    } else {
+    } else if(temperatura <= 0) {
         return '/assets/snowy.svg';
-    }
+    } else {
+        if(horas >= 5 && horas < 18) return '/assets/sun.svg';
+        else return '/assets/moon.svg'
+    }   
 }
 
 function atualizarUI(forecastDays) {
