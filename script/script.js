@@ -90,7 +90,6 @@ function selecionarIconeClima() {
     } else if (clima == "Neblina") {
         return '/assets/very_cloudy.svg'
     }
-    
     else if (((temperatura >= 15 && temperatura <= 25) && clima !== "Céu limpo") || clima == "Parcialmente nublado") {
         if(horas >= 5 && horas < 18) return '/assets/cloudy.svg';
         else return '/assets/cloudyNight.svg'
