@@ -9,14 +9,14 @@
     background: linear-gradient(#00A3FF, #9dd8f9);
     width: 100wh;
     padding: 15px 150px;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .appNoite {
     background: linear-gradient(#1b2566, #4e56b3);
     width: 100wh;
     padding: 15px 150px;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .containerBusca {
